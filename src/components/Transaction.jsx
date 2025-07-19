@@ -1,16 +1,10 @@
 const Transaction = ({ transaction }) => {
-  const symbolClass = (amount) => {
-    if (amount < 0) return ["-৳", "minus"];
-    if (amount > 0) return ["+৳", "plus"];
-    return ["৳", "plus"];
-  };
-
-  const [symbol, styleClass] = symbolClass(transaction.amount);
+  const sign = transaction.amount < 0 ? "-" : "+";
 
   return (
-    <li className={styleClass}>
+    <li className={transaction.amount < 0 ? "minus" : "plus"}>
       {transaction.text + " "}
-      <span>{symbol + Math.abs(transaction.amount)}</span>
+      <span>{sign + "৳" + Math.abs(transaction.amount)}</span>
       <button className="delete-btn">x</button>
     </li>
   );
